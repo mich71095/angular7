@@ -3,8 +3,8 @@ import { Component, OnInit } from '@angular/core';
 // class
 import { Hero } from '../../classes/hero';
 
-// datas
-import { HEROES } from '../../datas/mock-heroes';
+// service
+import { HeroService } from '../.././services/hero/hero.service';
 
 @Component({
   selector: 'app-heroes',
@@ -14,15 +14,28 @@ import { HEROES } from '../../datas/mock-heroes';
 export class HeroesComponent implements OnInit {
 
   selectedHero: Hero;
-  heroes = HEROES;
+  heroes: Hero[];
 
-  constructor() { }
+  /* Reserve the constructor for simple initialization such as 
+  * wiring constructor parameters to properties. 
+  * The constructor shouldn't do anything. 
+  * It certainly shouldn't call a function that makes 
+  * HTTP requests to a remote server as a real data service would.
+  */
+  constructor(
+  	private heroService: HeroService
+  ) { }
 
   ngOnInit() {
+  	this.getHeroes();
   }
 
   onSelect(hero: Hero): void {
   	this.selectedHero = hero;
+  }
+
+  getHeroes(): void {
+  	this.heroes = this.heroService.getHeroes();
   }
 
 }
