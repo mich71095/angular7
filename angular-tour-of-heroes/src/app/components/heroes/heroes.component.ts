@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 
-// class
+// classes
 import { Hero } from '../../classes/hero';
 
-// service
+// services
 import { HeroService } from '../.././services/hero/hero.service';
+
 
 @Component({
   selector: 'app-heroes',
